@@ -1,48 +1,41 @@
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# Ignore OS and system files
+.DS_Store
+Thumbs.db
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
-/wp-admin/
-/wp-content/index.php
-/wp-content/languages
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
-/wp-includes/
-/index.php
-/license.txt
-/readme.html
-/wp-*.php
-/xmlrpc.php
+# Ignore SASS and Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+*.map
 
-# Configuration
-wp-config.php
+# Ignore Composer dependencies
+vendor/
+composer.lock
 
-# Example themes
-/wp-content/themes/twenty*/
-
-# Example plugin
-/wp-content/plugins/hello.php
-
-# Uploads
-/wp-content/uploads/
-
-# Log files
+# Ignore build and cache files
 *.log
+*.cache
+*.sass-cache/
+*.scssc/
+*.tmp
+*.swp
 
-# htaccess
-/.htaccess
+# Ignore personal development files
+.idea/
+.vscode/
+*.bak
+*.orig
 
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-#/wp-content/plugins
+# Ignore WordPress-generated files
+debug.log
+cache/
+uploads/
+upgrade/
 
-# All themes
-#
-# Note: If you wish to whitelist themes,
-# uncomment the next line
-#/wp-content/themes
+# Ignore database files
+*.sql
+*.sqlite
+
+# Ignore environment variables
+.env
+.env.local
