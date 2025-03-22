@@ -1,1 +1,1 @@
-<h1>No entry</h1>
+<?php
