@@ -1,5 +1,67 @@
 <?php
 
+require get_theme_file_path('includes/movie-route.php');
+
+
+
+
+
+
+function register_custom_post_types()
+{
+
+
+    register_post_type('streamingservice', array(
+        'rewrite' => array('slug' => 'Streaming Services'),
+        'supports' => array('title'),
+        'public' => true,
+        'menu_icon' => 'dashicons-video-alt3',
+        'show_in_rest' => true,
+        'labels' => array(
+            'name' => 'Streaming Services',
+            'add_new_item' => 'Add new Streaming Service',
+            'edit_item' => 'Edit Streaming Service',
+            'all_items' => 'All Streaming Services',
+            'singular_name' => 'Streaming Service',
+        )
+    ));
+
+    register_post_type('movie', array(
+        'rewrite' => array('slug' => 'Movies'),
+        'supports' => array('title'),
+        'public' => true,
+        'menu_icon' => 'dashicons-editor-video',
+        'show_in_rest' => true,
+        'labels' => array(
+            'name' => 'Movies',
+            'add_new_item' => 'Add new Movie',
+            'edit_item' => 'Edit Movie',
+            'all_items' => 'All Movies',
+            'singular_name' => 'Movie',
+        )
+    ));
+    register_post_type('genre', array(
+        'rewrite' => array('slug' => 'genres'),
+        'supports' => array('editor', 'title'),
+        'public' => true,
+        'menu_icon' => 'dashicons-tickets-alt',
+        'show_in_rest' => true,
+        'labels' => array(
+            'name' => 'Genres',
+            'add_new_item' => 'Add new Genre',
+            'edit_item' => 'Edit Genre',
+            'all_items' => 'All Genres',
+            'singular_name' => 'Genre',
+        )
+    ));
+}
+
+
+
+
+
+// init custom plugin option
+
 function apiOptionsPageHTML()
 {
 ?>
@@ -61,5 +123,11 @@ function addThemeAdminMenu()
     );
 }
 
+
+
+
+
+add_action('rest_api_init', 'registerMovieRoutes');
 add_action('admin_menu', 'addThemeAdminMenu');
 add_action('admin_init', 'addThemeAdminOptions');
+add_action("init", "register_custom_post_types");
