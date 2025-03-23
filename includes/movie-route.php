@@ -176,8 +176,20 @@ function updateMovieData($data)
         'runtime' => $data['runtime'],
         'id' =>  $data['id'],
         'overview' => $data['overview'],
-        'genres' => $genres,
-        'streaming_services' => $streaming_services,
+        'genres' => array_map(
+            function ($genreID) {
+                return [
+                    'id' => esc_attr(get_field('genre_id', $genreID)),
+                    'name' => esc_html(get_the_title($genreID))
+                ];
+            },
+            $genres
+        ),
+        'streaming_services' => [
+            'flatrate' => prepStreamingData($streaming_services['flatrate']),
+            'rent' => prepStreamingData($streaming_services['rent']),
+            'buy' => prepStreamingData($streaming_services['buy'])
+        ]
     ]);
 }
 
